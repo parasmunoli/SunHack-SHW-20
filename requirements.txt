@@ -2,3 +2,5 @@ flask
 gunicorn
 PyPDF2 == 3.0.1
 flask_cors
+speech_recognition
+moviepy
