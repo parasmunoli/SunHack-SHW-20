@@ -2,11 +2,12 @@ from flask import Flask, request, jsonify
 import PyPDF2
 from collections import Counter
 import math
+import speech_recognition as sr
+import moviepy.editor as mp
 import os
 from flask_cors import CORS
 
 app = Flask(__name__)
-
 CORS(app)
 
 def extract_text_from_pdf(pdf_file_path):
