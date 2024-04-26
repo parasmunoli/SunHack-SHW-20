@@ -4,3 +4,4 @@ collections
 os
 math
 Py2PDF
+flask_cors
