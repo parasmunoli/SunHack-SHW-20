@@ -1,4 +1,4 @@
 flask
 gunicorn
-Py2PDF
+Py2PDF == 3.0.1
 flask_cors
