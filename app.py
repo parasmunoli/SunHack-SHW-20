@@ -3,8 +3,11 @@ import PyPDF2
 from collections import Counter
 import math
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
 
 def extract_text_from_pdf(pdf_file_path):
     with open(pdf_file_path, 'rb') as pdf_file:
