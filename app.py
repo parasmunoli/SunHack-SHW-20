@@ -52,5 +52,34 @@ def analyze_resume():
     
     return jsonify({'similarity_score': similarity_score})
 
+@app.route('/analyze_video', methods=['POST'])
+def analyze_video():
+    job_description = request.form['job_description']
+    video_file = request.files['resume']
+
+    # Save the video file
+    video_path = 'uploaded_video.mp4'
+    video_file.save(video_path)
+
+    # Load the video file
+    video = mp.VideoFileClip(video_path)
+
+    # Extract the audio from the video
+    audio_path = 'audio.wav'
+
+    # Initialize the recognizer
+    r = sr.Recognizer()
+
+    # Load the audio file
+    with sr.AudioFile(audio_path) as source:
+        audio = r.record(source)
+
+    # Convert speech to text
+    video_text = r.recognize_google(audio)
+
+    # Calculate cosine similarity
+    similarity_score = cosine_similarity(job_description, video_text)
+    return jsonify({'similarity_score': similarity_score})
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
